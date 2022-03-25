@@ -6,7 +6,7 @@ public class Mamiferos extends Animal{
 	public Mamiferos(String color, Integer tiempoGestacion) {
 		super(color);
 		this.tiempoGestacion = tiempoGestacion;
-		
+		super.getEdad();
 	}
 	
 	

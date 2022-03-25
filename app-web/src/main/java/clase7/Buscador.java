@@ -58,7 +58,14 @@ public class Buscador {
 			
 			Articulo unArticulo = this.articulos[i];
 			
-			unArticulo.detalle();
+			System.out.println(unArticulo.getNombre());
+			System.out.println(unArticulo.getAutor());
+			//solo mostrar la img si tiene una, ¿como hago?
+			if(unArticulo.tieneImagen()) {//f5
+				System.out.println(unArticulo.getUrlImagen());
+			}else {
+				System.out.println("No tiene, muestro marca de agua");
+			}
 		}
 	}
 
@@ -72,5 +79,9 @@ public class Buscador {
 			this.cantidad = this.articulos.length;
 		}
 		return cantidad;
+	}
+	
+	public Articulo[] getResultados() {
+		return this.articulos;
 	}
 }

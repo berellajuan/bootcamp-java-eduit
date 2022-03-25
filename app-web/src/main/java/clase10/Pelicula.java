@@ -15,7 +15,6 @@ public class Pelicula extends Articulo {
 
 	public Pelicula(Long id, String nombre, String autor, Double precio, String urlImagen) {
 		super(id, nombre, autor, precio, urlImagen);
-		// TODO Auto-generated constructor stub
 	}
 
 }
