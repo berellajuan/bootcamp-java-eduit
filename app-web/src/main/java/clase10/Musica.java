@@ -19,8 +19,19 @@ public class Musica extends Articulo{
 		this.listaTemas = listaTemas;
 	}
 	
-	public void addTema(String tema) {
-		//??
+	public void agregarTema(String tema) {
+		String listaActualizada[] = new String[this.listaTemas.length+1];
+		for (int i = 0; i < listaActualizada.length; i++) {
+			if(this.listaTemas.length-1 >= i ) {
+				listaActualizada[i] = this.listaTemas[i];
+			}else{
+				listaActualizada[i] = tema;
+			}
+			
+			
+			
+		}
+		this.listaTemas = listaActualizada;
 	}
 	
 	@Override

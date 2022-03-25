@@ -36,7 +36,7 @@ public class Buscador {
 		
 		String[] temas = {"tema1","Tema2"};
 		resultados[1] = new Musica(2l,"BATMAN (2010) UNA NUEVA LEYENDA", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg", temas);
-		//((Musica))resultados[1].add...
+		((Musica)resultados[1]).agregarTema("A Las Nueve");
 		
 		resultados[2] = new Pasatiempo(3l,"BATMAN (2000)", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg","Correr");
 		
