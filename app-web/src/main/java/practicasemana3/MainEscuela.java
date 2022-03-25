@@ -90,7 +90,6 @@ public class MainEscuela {
 		System.out.println("-----------\n");
 		escuela.alumnosNoPromocionados();
 		
-		//ropero 1*180, cama tele, una cajonera y una mesa
 		
 	}
 
