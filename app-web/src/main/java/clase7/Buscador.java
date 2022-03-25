@@ -34,9 +34,12 @@ public class Buscador {
 		Articulo[] resultados = new Articulo[3];
 		resultados[0] = new Libro(1l,"BATMAN (1970) UN CABALLE...","DC COMICS",1540.9d,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689621.jpg","5S1fe8");
 		
-		String[] temas = {"tema1","Tema2"};
-		resultados[1] = new Musica(2l,"BATMAN (2010) UNA NUEVA LEYENDA", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg", temas);
+		String[] temas = {"Memorias del Olvido","Clara"};
+		
+		resultados[1] = new Musica(2l,"Algun Album", "No te Va A Gustar",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg",
+				temas);
 		((Musica)resultados[1]).agregarTema("A Las Nueve");
+		((Musica)resultados[1]).detalle();
 		
 		resultados[2] = new Pasatiempo(3l,"BATMAN (2000)", "DC COMICS",1490.9D,"https://www.tematika.com/media/catalog/Ilhsa/Imagenes/689626.jpg","Correr");
 		
@@ -60,10 +63,12 @@ public class Buscador {
 			
 			System.out.println(unArticulo.getNombre());
 			System.out.println(unArticulo.getAutor());
+			
 			//solo mostrar la img si tiene una, ¿como hago?
 			if(unArticulo.tieneImagen()) {//f5
 				System.out.println(unArticulo.getUrlImagen());
 			}else {
+			
 				System.out.println("No tiene, muestro marca de agua");
 			}
 		}

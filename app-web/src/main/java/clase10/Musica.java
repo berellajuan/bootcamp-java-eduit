@@ -12,7 +12,8 @@ public class Musica extends Articulo{
 
 	public String[] getListaTemas() {
 		
-		return this.getListaTemas() != null ? this.listaTemas : new String[0];
+		return this.listaTemas != null ? this.listaTemas : new String[0];
+
 	}
 
 	public void setListaTemas(String[] listaTemas) {
@@ -26,12 +27,10 @@ public class Musica extends Articulo{
 				listaActualizada[i] = this.listaTemas[i];
 			}else{
 				listaActualizada[i] = tema;
-			}
-			
-			
-			
+			}	
 		}
 		this.listaTemas = listaActualizada;
+			
 	}
 	
 	@Override

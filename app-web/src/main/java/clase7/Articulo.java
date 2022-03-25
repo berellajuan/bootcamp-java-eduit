@@ -20,6 +20,7 @@ public class Articulo {
 	public void detalle() {
 		System.out.println(this.getNombre());
 		System.out.println(this.getAutor());
+		
 		//solo mostrar la img si tiene una, ¿como hago?
 		if(this.tieneImagen()) {//f5
 			System.out.println(this.getUrlImagen());
