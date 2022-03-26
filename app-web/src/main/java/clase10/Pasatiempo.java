@@ -17,11 +17,17 @@ public class Pasatiempo extends Articulo {
 		super(id, nombre, autor, precio, urlImagen);
 		this.marca = marca;
 	}
-	
+	/*
 	@Override
 	public void detalle() {
 		super.detalle();
 		System.out.println(this.getMarca());
+	}
+	*/
+	@Override
+	public void detalleHijo() {
+		System.out.println(this.getMarca());
+		
 	}
 
 }

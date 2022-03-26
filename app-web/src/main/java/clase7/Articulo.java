@@ -1,6 +1,6 @@
 package clase7;
 
-public class Articulo {
+public abstract class Articulo {
 
 	private Long id;
 	private String nombre;
@@ -27,8 +27,11 @@ public class Articulo {
 		}else {
 			System.out.println("No tiene, muestro marca de agua");
 		}
+		this.detalleHijo();
 	}
 	
+	
+	public abstract void detalleHijo();
 	//alt+shit+s
 	
 	boolean tieneImagen() {

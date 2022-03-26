@@ -32,7 +32,7 @@ public class Musica extends Articulo{
 		this.listaTemas = listaActualizada;
 			
 	}
-	
+	/*
 	@Override
 	public void detalle() {
 		super.detalle();
@@ -40,6 +40,15 @@ public class Musica extends Articulo{
 		for(String tema: this.getListaTemas()) {
 			System.out.println(tema);
 		}
+	}
+	 */
+	@Override
+	public void detalleHijo() {
+		System.out.println("Lista de temas");
+		for(String tema: this.getListaTemas()) {
+			System.out.println(tema);
+		}
+		
 	}
 	
 
