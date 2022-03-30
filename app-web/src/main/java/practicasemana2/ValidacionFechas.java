@@ -41,7 +41,7 @@ public class ValidacionFechas {
 				}
 				break;
 			case 2:
-				if(!esBiciesto(anio) && dia >= 29) {
+				if(!esBisiesto(anio) && dia >= 29) {
 					res=false;
 				}else if(dia <= 29){
 					res=true;
@@ -105,7 +105,7 @@ public class ValidacionFechas {
 	}
 	
 	//Valida si es Biciesto
-	public static boolean esBiciesto(int anio) {
+	public static boolean esBisiesto(int anio) {
 		return anio % 4 == 0 && anio % 100 != 0|| anio % 400 == 0;
 	}
 	
