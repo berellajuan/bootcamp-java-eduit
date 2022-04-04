@@ -15,7 +15,7 @@ public class Avion extends Volador implements Aterrizable{
 
 	@Override
 	public void aterrizar() {
-		System.out.println("Aterrizando... sin problemas en la pista");
+		System.out.println("Aterrizando... sin problemas en la pista" + " con : " + getCapacidadMaxima() + " Pasajeros");
 		
 	}
 	

@@ -14,7 +14,7 @@ public class Helicoptero extends Volador implements Aterrizable{
 
 	@Override
 	public void aterrizar() {
-		System.out.println("Aterrizando de forma segura en el helipuerto");
+		System.out.println("Aterrizando de forma segura en el helipuerto desde una altura de: " + getAlturaMaximaVuelo() );
 		
 	}
 

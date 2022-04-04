@@ -20,9 +20,10 @@ public class TorreControlMain {
 		for (Volador volador : voladores) {
 			if(volador instanceof Aterrizable) {
 				Aterrizable a = (Aterrizable)volador;
+				System.out.print(volador.getNombre()+" ");
 				a.aterrizar();
 			}else {
-				System.out.println(volador.getNombre() + "-> No puede Aterrizar en la pista");
+				System.out.println(volador.getNombre() + "-> No puede Aterrizar en la pista ya lleva " + ((Ovni) volador).getCantidadAbducciones() + " Abdicciones");
 			}
 		}
 

@@ -17,7 +17,7 @@ public class Superman extends Volador  implements Aterrizable{
 
 	@Override
 	public void aterrizar() {
-		System.out.println("Relizando una aterrizaje de super heroe....");
+		System.out.println("Relizando una aterrizaje de super heroe.... recuerden que nacion en: " + getNacionalidad());
 	}
 	
 	
