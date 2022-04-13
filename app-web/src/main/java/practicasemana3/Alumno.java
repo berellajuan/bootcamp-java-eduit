@@ -1,8 +1,5 @@
 package practicasemana3;
 
-import java.util.Iterator;
-
-import javax.imageio.metadata.IIOMetadataFormatImpl;
 
 public class Alumno {
 	
