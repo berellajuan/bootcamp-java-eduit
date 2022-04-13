@@ -2,6 +2,7 @@ package clase18;
 
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -40,9 +41,12 @@ public class TreeSetMain {
 		
 		cal.add(Calendar.DATE, 1);//+1 dia
 		Cheque c4 = new Cheque("1002000","patagonia",cal.getTime());//IZQ
-				
+
 		//agrego un orden externo a la collection
-		Collection<Cheque> cheques = new TreeSet<>(new FechaPagoBanco());
+		
+		Comparator<Cheque> cmp = new ComparadorDeCheques();
+		
+		Collection<Cheque> cheques = new TreeSet<>(cmp);
 		cheques.add(c1);
 		cheques.add(c2);
 		cheques.add(c3);

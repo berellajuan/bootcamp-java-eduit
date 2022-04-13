@@ -44,6 +44,11 @@ public class Cheque implements Comparable<Cheque>{
 		
 		return resta;
 	}
+	
+	public String getCmc7() {
+		return cmc7;
+	}
+
 
 	@Override
 	public String toString() {
