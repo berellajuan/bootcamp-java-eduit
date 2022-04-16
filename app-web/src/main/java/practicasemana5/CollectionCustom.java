@@ -67,7 +67,6 @@ public class CollectionCustom<T> {
 		}
 	}
 
-	// add(T) Seria lo mismo que addLast?
 	public void add(T o) {
 		if (o != null) {
 			Object[] aux = new Object[vector.length + 1];
@@ -86,16 +85,35 @@ public class CollectionCustom<T> {
 
 	public T remove(T o) {
 		T res = null;
+
 		if (!this.empty() && o != null) {
 			for (int i = 0; i < this.size(); i++) {
 				if (this.vector[i].equals(o)) {
 					res = this.vector[i];
-					this.vector[i] = null;
+					this.moveLeft(i);
 					break;
 				}
 			}
+			this.resizeMin();
 		}
+
 		return res;
+	}
+
+	// metodo para achicar el vector
+	private void resizeMin() {
+		Object[] aux = new Object[vector.length - 1];
+		for (int j = 0; j < this.size() - 1; j++) {
+			aux[j] = this.vector[j];
+		}
+		this.vector = (T[]) aux;
+	}
+
+	// metodo para mover los elementos a la izq
+	private void moveLeft(int pos) {
+		for (int i = pos; i < this.size() - 1; i++) {
+			this.vector[i] = this.vector[i + 1];
+		}
 	}
 
 	public void removeAll() {
@@ -104,14 +122,7 @@ public class CollectionCustom<T> {
 	}
 
 	public int size() {
-		int res;
-		if (this.vector == null) {
-			res = 0;
-		} else {
-			res = this.vector.length;
-		}
-
-		return res;
+		return this.vector == null ? 0 : this.vector.length;
 	}
 
 	public boolean empty() {
@@ -122,5 +133,7 @@ public class CollectionCustom<T> {
 	public String toString() {
 		return Arrays.toString(vector);
 	}
+
+
 
 }
