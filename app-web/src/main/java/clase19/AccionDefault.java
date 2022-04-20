@@ -1,11 +1,9 @@
 package clase19;
 
-public class AccionDefault implements IAccion{
+import clase7.Articulo;
 
+public class AccionDefault implements IAccion {
 	@Override
-	public void exec(Context algo) {
-		System.out.println(algo);
-		
+	public void exec(Articulo ctx) {
 	}
-
 }

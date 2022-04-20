@@ -1,5 +1,8 @@
 package clase19;
 
+import clase7.Articulo;
+
 public interface IAccion {
-	public void exec(Context algo);
+
+	public void exec(Articulo ctx);
 }

@@ -1,11 +1,14 @@
 package clase19;
 
-public class AccionAlta implements IAccion{
+import clase7.Articulo;
+
+public class AccionAlta implements IAccion {
 
 	@Override
-	public void exec(Context algo) {
-		System.out.println(algo);
-		
+	public void exec(Articulo ctx) {
+
+		//usa la base de datos en memoria
+		InMemoryDB.save(ctx.getId(), ctx);
 	}
 
 }
