@@ -1,5 +1,7 @@
 package clase20;
 
+import java.util.Objects;
+
 public class Vendedor {
 
 	private Long id;
@@ -61,5 +63,24 @@ public class Vendedor {
 	public String toString() {
 		return "Vendedor [id=" + id + ", nombre=" + nombre + ", sucursal=" + sucursal + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vendedor other = (Vendedor) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	
 	
 }

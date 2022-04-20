@@ -37,4 +37,11 @@ public class Ventas {
 		}
 		return ventas;
 	}
+	
+	@Override
+	public String toString() {
+		return "Ventas [ventas=" + ventas + "]";
+	}
+	
+	
 }
