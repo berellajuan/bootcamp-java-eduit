@@ -89,7 +89,9 @@ public class Venta {
 	public Long getIdVendedor() {
 		return idVendedor;
 	}
-
+	
+	//primero pregunta por el hash que es el numero de memoria y luego el equals
+	//identificador unico en memoria
 	@Override
 	public int hashCode() {
 		return Objects.hash(idVendedor);
