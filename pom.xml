@@ -13,5 +13,9 @@
 
   <modules>
   	<module>app-web</module>
+  	<module>app-services</module>
+  	<module>app-service</module>
+  	<module>app-dao</module>
+  	<module>domain</module>
   </modules>
 </project>
