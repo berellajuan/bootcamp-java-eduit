@@ -5,7 +5,7 @@ import clase7.Articulo;
 public class AccionModificacion implements IAccion {
 
 	@Override
-	public void exec(Articulo ctx) {
+	public void exec(Articulo ctx) throws MemoryDBException {
 		
 		Articulo art = InMemoryDB.getById(ctx.getId());
 		

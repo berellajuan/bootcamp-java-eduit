@@ -17,19 +17,21 @@ public class InMemoryDB {
 
 	static private Map<Long,Articulo> db = new HashMap<>();
 	
-	public static void save(Long key,Articulo valor){
-		InMemoryDB.db.put(key, valor);
+	public static void save(Long key,Articulo valor) throws MemoryDBException{
+			InMemoryDB.db.put(key, valor);
+		
 	}
 	
-	public static void update(Long key, Articulo newValue) {
+	public static void update(Long key, Articulo newValue) throws MemoryDBException{
+	
 		InMemoryDB.db.replace(key,newValue);
 	}
 	
-	public static void delete(Long key) {
+	public static void delete(Long key) throws MemoryDBException{
 		InMemoryDB.db.remove(key);
 	}
 	
-	public static Articulo getById(Long key) {
+	public static Articulo getById(Long key) throws MemoryDBException{
 		Articulo value = null;
 		if(InMemoryDB.db.containsKey(key)) {
 			value = InMemoryDB.db.get(key);
@@ -37,7 +39,7 @@ public class InMemoryDB {
 		return value;
 	}
 
-	public static void listAll() {
+	public static void listAll() throws MemoryDBException{
 		System.out.println(InMemoryDB.db.values());		
 	}
 }

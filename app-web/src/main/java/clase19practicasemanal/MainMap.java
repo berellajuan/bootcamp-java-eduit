@@ -25,7 +25,12 @@ public class MainMap {
 		Articulo articulo = contruirArticulo();
 		
 		//ejecuto
-		InMemoryDB.listAll();
+		try {
+			InMemoryDB.listAll();
+		} catch (MemoryDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		accion.exec(articulo);
 		
