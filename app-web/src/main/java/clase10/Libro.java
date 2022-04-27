@@ -38,4 +38,10 @@ public class Libro extends Articulo{
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Libro [isbn=" + isbn + "]";
+	}
+	
+
 }
