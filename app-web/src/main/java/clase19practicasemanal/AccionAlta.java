@@ -1,4 +1,4 @@
-package clase19;
+package clase19practicasemanal;
 
 import clase7.Articulo;
 

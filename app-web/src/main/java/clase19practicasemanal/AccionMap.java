@@ -1,4 +1,4 @@
-package clase19;
+package clase19practicasemanal;
 
 import java.util.HashMap;
 import java.util.Map;
