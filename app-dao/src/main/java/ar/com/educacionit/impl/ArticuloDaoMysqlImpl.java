@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import ar.com.educacionit.daos.ArticuloDao;
 import ar.com.educacionit.db.AdministradorDeConexiones;
+import ar.com.educacionit.db.exceptions.DuplicatedException;
 import ar.com.educacionit.db.exceptions.GenericException;
 import ar.com.educacionit.domain.Articulo;
 
@@ -28,9 +30,44 @@ public class ArticuloDaoMysqlImpl implements ArticuloDao {
 	}
 
 	@Override
-	public Articulo save(Articulo Articulo) {
+	public void save(Articulo articulo) throws GenericException, DuplicatedException {
+		
+		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()){
+			StringBuffer  sql = new StringBuffer("INSERT INTO ARTICULOS (TITULO,CODIGO,PRECIO,STOCK,MARCAS_ID,FECHA_CREACION,CATEGORIAS_ID) VALUES (");
+			sql.append("?,?,?,?,?,?,?)");
 
-		return Articulo;
+			try (PreparedStatement st = con2.prepareStatement(sql.toString(),PreparedStatement.RETURN_GENERATED_KEYS)) {
+				//execueteQuery -> consultas de tipo select
+				//execuete -> son para hacer Inserts
+				//executeUpdite -> Permite insert y update en al bd sirve para delete
+				st.setString(1, articulo.getTitulo());
+				st.setString(2, articulo.getCodigo());
+				st.setDouble(3, articulo.getPrecio());
+				st.setLong(7, articulo.getCategoriasId());
+				st.setLong(5, articulo.getMarcasId());
+				st.setDate(6, new java.sql.Date(System.currentTimeMillis()));
+				st.setLong(4, articulo.getStock());
+				
+				st.execute();
+				//para que devuelva el key, pasamos como paramenetro  PreparedStatement.RETURN_GENERATED_KEYS
+				try(ResultSet rs = st.getGeneratedKeys()){
+					if(rs.next()) {
+						//devuelve una sika cikynba
+						Long id = rs.getLong(1);
+						
+						articulo.setId(id);
+					}
+				}
+				// alt+shift+m
+			}
+		} catch (GenericException ge) {
+			throw new GenericException(ge.getMessage(), ge);
+		} catch (SQLException se) {
+			if(se instanceof SQLIntegrityConstraintViolationException) {
+				throw new DuplicatedException("No se ha podido insertar el articulo, integridad de datos violada",se);
+			}
+			throw new GenericException(se.getMessage(), se);
+		}
 	}
 
 	@Override
@@ -62,7 +99,7 @@ public class ArticuloDaoMysqlImpl implements ArticuloDao {
 
 	@Override
 	public void update(Articulo articuloToUpdate) throws GenericException{
-		StringBuffer sql = new StringBuffer("UPDATE ARTICULOS SET ID = ");
+		StringBuffer sql = new StringBuffer("UPDATE ARTICULOS SET ");
 		if(articuloToUpdate.getTitulo() != null) {
 			sql.append("titulo=?").append(",");
 		}
@@ -200,6 +237,33 @@ public class ArticuloDaoMysqlImpl implements ArticuloDao {
 		return  new Articulo(idArticulo, titulo, codigo, fechaCreacion, precio, stock, marcasId,
 				categoriasId);
 	}
+
+	@Override
+	public Articulo getByCodigo(String codigo) throws GenericException {
+		// Connection
+				try (Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
+					// Statement
+					String sql = "SELECT * FROM ARTICULOS WHERE codigo = ?";
+					try (PreparedStatement st = con2.prepareStatement(sql)) {
+						
+						st.setString(1, codigo);
+						try (ResultSet rs = st.executeQuery()) {
+							Articulo articulo = null;
+							if (rs.next()) {
+								articulo = formResultSetToEntity(rs);
+							}
+							return articulo;
+						}
+					} catch (SQLException e) {
+						throw new GenericException("No se pudo obtener el articulo codigo:" + codigo, e);
+					}
+				} catch (SQLException e) {
+					throw new GenericException("No se pudo obtener el articulo codigo:" + codigo, e);
+				}
+		
+	}
+
+
 	
 
 }
