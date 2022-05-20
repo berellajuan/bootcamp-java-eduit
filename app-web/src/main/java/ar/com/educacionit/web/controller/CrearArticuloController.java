@@ -36,7 +36,7 @@ public class CrearArticuloController {
 		ArticulosService artService = new ArticuloServiceImpl();
 		
 		try {
-			artService.createArticulo(nuevo);
+			artService.create(nuevo);
 		} catch (ServiceException e) {
 			
 			System.out.println((e.getMessage() + "," + e.getCause().getMessage()));
@@ -53,7 +53,7 @@ public class CrearArticuloController {
 				System.out.println(artExist.getTitulo());
 
 				
-				artService.updateArticulo(artExist);
+				artService.update(artExist);
 			} catch (ServiceException e1) {
 				// TODO Auto-generated catch block
 				System.out.println(e1.getMessage() + ", "+e.getCause());

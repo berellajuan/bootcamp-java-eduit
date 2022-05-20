@@ -11,4 +11,6 @@ import ar.com.educacionit.domain.Articulo;
  */
 public interface ArticuloDao extends GenericDao<Articulo>{
 	public Articulo getByCodigo(String codigo)throws GenericException;
+	
+	
  }

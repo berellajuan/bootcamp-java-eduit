@@ -15,5 +15,7 @@ public interface GenericDao<T> {
 	public void update(T ordenToUpdate) throws GenericException;
 
 	public void delete(Long pk) throws GenericException;
+	
+	public List<T> findPageable(Integer currentPage,Integer size) throws GenericException;
 
 }

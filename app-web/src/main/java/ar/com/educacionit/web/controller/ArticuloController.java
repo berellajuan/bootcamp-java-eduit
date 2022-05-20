@@ -14,7 +14,7 @@ public class ArticuloController {
 				
 				//TODO implementar un menu de acciones
 				try {
-					List<Articulo> articulos = service.obtenerTodos();
+					List<Articulo> articulos = service.findAll();
 					
 					System.out.println(articulos);
 					if(!articulos.isEmpty()) {
@@ -30,7 +30,7 @@ public class ArticuloController {
 						articulo.setStock(25l);
 						articulo.setPrecio(100000d);
 						
-						service.updateArticulo(articulo);
+						service.update(articulo);
 					}
 				} catch (ServiceException e) {
 					e.printStackTrace();
