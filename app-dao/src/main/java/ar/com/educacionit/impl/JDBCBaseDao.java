@@ -65,7 +65,6 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 	}
 	
-	
 	private Object getSaveSQL2(T entity) {
 		// TODO Auto-generated method stub
 		return null;
