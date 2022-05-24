@@ -1,17 +1,21 @@
 package ar.com.educacionit.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.educacionit.daos.GenericDao;
 import ar.com.educacionit.db.AdministradorDeConexiones;
+import ar.com.educacionit.db.exceptions.DuplicatedException;
 import ar.com.educacionit.db.exceptions.GenericException;
+import ar.com.educacionit.domain.Entity;
 
-public abstract class JDBCBaseDao<T> implements GenericDao<T> {
+public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 	protected String tabla;
 
 	public JDBCBaseDao(String tabla) {
@@ -19,6 +23,95 @@ public abstract class JDBCBaseDao<T> implements GenericDao<T> {
 			throw new IllegalArgumentException("Debe incluir la tabla del DAO");
 		}
 		this.tabla = tabla;
+	}
+	
+	
+	public abstract String getSaveSQL();
+	
+	public abstract void saveData(T entity, PreparedStatement pstm) throws SQLException;
+	
+	public void save(T entity) throws GenericException, DuplicatedException {
+		
+		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()){
+			
+			StringBuffer  sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
+			
+			StringBuffer  sql = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL());
+			
+			try (PreparedStatement st = con2.prepareStatement(sql.toString(),PreparedStatement.RETURN_GENERATED_KEYS)) {
+				
+				//necesito una entity y un statement para generar la consulta
+				this.saveData(entity, st);
+				
+				st.execute();
+				
+				try(ResultSet rs = st.getGeneratedKeys()){
+					if(rs.next()) {
+						//devuelve una key
+						Long id = rs.getLong(1);
+						
+						entity.setId(id);
+					}
+				}
+				// alt+shift+m
+			}
+		} catch (GenericException ge) {
+			throw new GenericException(ge.getMessage(), ge);
+		} catch (SQLException se) {
+			if(se instanceof SQLIntegrityConstraintViolationException) {
+				throw new DuplicatedException("No se ha podido insertar el Categorias, integridad de datos violada",se);
+			}
+			throw new GenericException(se.getMessage(), se);
+		}
+	}
+	
+	
+	private Object getSaveSQL2(T entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public abstract String getUpdateSQL(T entityUpdate);
+	
+	public abstract void updateData(T entityUpdate, PreparedStatement st) throws SQLException;
+	
+	@Override
+	public void update(T entityUpdate) throws GenericException {
+		
+		StringBuffer sql = new StringBuffer("UPDATE ").append(this.tabla).append(" SET ") .append(this.getUpdateSQL(entityUpdate))
+				.append(" where id=?");
+		
+		//Forma para buscar el ultimo ?
+		int idx = getWhereIndex(sql);
+	
+		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
+
+			try (PreparedStatement st = con2.prepareStatement(sql.toString())) {
+				
+				this.updateData(entityUpdate,st);
+				
+				st.setLong(idx, entityUpdate.getId());
+
+				st.execute();
+			}
+		} catch (GenericException ge) {
+			throw new GenericException(ge.getMessage(), ge);
+		} catch (SQLException se) {
+			throw new GenericException(se.getMessage(), se);
+		}
+
+	}
+
+	//Determina el indice del where
+	private int getWhereIndex(StringBuffer sql) {
+		int idx = 0;
+		for(char c : sql.toString().toCharArray()) {
+			if(c == '?') {
+				idx ++;
+			}
+		}
+		return idx;
 	}
 
 	@Override

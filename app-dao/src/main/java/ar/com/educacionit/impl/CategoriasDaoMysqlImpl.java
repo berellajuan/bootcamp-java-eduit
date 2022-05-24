@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
-
 import ar.com.educacionit.daos.CategoriasDao;
 import ar.com.educacionit.db.AdministradorDeConexiones;
 import ar.com.educacionit.db.exceptions.DuplicatedException;
@@ -55,12 +53,6 @@ public class CategoriasDaoMysqlImpl extends JDBCBaseDao<Categorias> implements C
 		}
 	}
 
-
-	@Override
-	public void update(Categorias CategoriasToUpdate) throws GenericException{
-		
-	}
-
 	
 
 
@@ -73,6 +65,30 @@ public class CategoriasDaoMysqlImpl extends JDBCBaseDao<Categorias> implements C
 
 		 
 		return  new Categorias(idCategorias,descripcion,habilitada);
+	}
+
+	@Override
+	public String getSaveSQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveData(Categorias entity, PreparedStatement pstm) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getUpdateSQL(Categorias entityUpdate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateData(Categorias entityUpdate, PreparedStatement st) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

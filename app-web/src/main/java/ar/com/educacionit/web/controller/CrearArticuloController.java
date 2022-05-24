@@ -50,8 +50,6 @@ public class CrearArticuloController {
 				artExist.setPrecio(nuevo.getPrecio());
 				artExist.setStock(nuevo.getStock() + artExist.getStock());
 				artExist.setTitulo(nuevo.getTitulo());
-				System.out.println(artExist.getTitulo());
-
 				
 				artService.update(artExist);
 			} catch (ServiceException e1) {

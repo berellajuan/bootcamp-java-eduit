@@ -2,7 +2,7 @@ package ar.com.educacionit.domain;
 
 import java.util.Date;
 
-public class Articulo {
+public class Articulo implements Entity{
 
 	private Long id;
 	private String titulo;
@@ -41,7 +41,7 @@ public class Articulo {
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
