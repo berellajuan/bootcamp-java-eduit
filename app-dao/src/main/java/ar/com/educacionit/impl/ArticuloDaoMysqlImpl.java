@@ -22,22 +22,19 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 	// Este metodo Realiza el cuerpo la Query Especifica
 	@Override
 	public String getSaveSQL() {
-
-		return " (TITULO, CODIGO, PRECIO, CATEGORIAS_ID, MARCAS_ID, FECHA_CREACION, STOCK) VALUES (?,?,?,?,?,?,?)";
+		return "(TITULO, CODIGO, FECHA_CREACION, PRECIO, STOCK, MARCAS_ID, CATEGORIAS_ID) VALUES (?,?,?,?,?,?,?)";
 	}
 
 	// Este Metodo completa la Query especifica el PreparedStatement setea los datos
 	@Override
 	public void saveData(Articulo entity, PreparedStatement st) throws SQLException {
-
 		st.setString(1, entity.getTitulo());
 		st.setString(2, entity.getCodigo());
-		st.setDouble(3, entity.getPrecio());
-		st.setLong(4, entity.getCategoriasId());
-		st.setLong(5, entity.getMarcasId());
-		st.setDate(6, new java.sql.Date(System.currentTimeMillis()));
-		st.setLong(7, entity.getStock());
-
+		st.setDate(3, new java.sql.Date(System.currentTimeMillis()));	
+		st.setDouble(4, entity.getPrecio());
+		st.setLong(5, entity.getStock());
+		st.setLong(6, entity.getMarcasId());
+		st.setLong(7, entity.getCategoriasId());
 	}
 
 

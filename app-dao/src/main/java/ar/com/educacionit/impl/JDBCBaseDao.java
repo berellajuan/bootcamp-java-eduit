@@ -1,5 +1,6 @@
 package ar.com.educacionit.impl;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,12 +8,14 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ar.com.educacionit.daos.GenericDao;
 import ar.com.educacionit.db.AdministradorDeConexiones;
 import ar.com.educacionit.db.exceptions.DuplicatedException;
 import ar.com.educacionit.db.exceptions.GenericException;
+import ar.com.educacionit.domain.Articulo;
 import ar.com.educacionit.domain.Entity;
 
 public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
@@ -24,32 +27,32 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 		this.tabla = tabla;
 	}
-	
-	
+
 	public abstract String getSaveSQL();
-	
+
 	public abstract void saveData(T entity, PreparedStatement pstm) throws SQLException;
-	
+
 	public void save(T entity) throws GenericException, DuplicatedException {
-		
-		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()){
-			
-			StringBuffer  sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
-			
-			StringBuffer  sql = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL());
-			
-			try (PreparedStatement st = con2.prepareStatement(sql.toString(),PreparedStatement.RETURN_GENERATED_KEYS)) {
-				
-				//necesito una entity y un statement para generar la consulta
+
+		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
+
+			StringBuffer sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
+
+			//StringBuffer sql = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL());
+
+			try (PreparedStatement st = con2.prepareStatement(sql2.toString(),
+					PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+				// necesito una entity y un statement para generar la consulta
 				this.saveData(entity, st);
-				
+
 				st.execute();
-				
-				try(ResultSet rs = st.getGeneratedKeys()){
-					if(rs.next()) {
-						//devuelve una key
+
+				try (ResultSet rs = st.getGeneratedKeys()) {
+					if (rs.next()) {
+						// devuelve una key
 						Long id = rs.getLong(1);
-						
+
 						entity.setId(id);
 					}
 				}
@@ -58,38 +61,83 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		} catch (GenericException ge) {
 			throw new GenericException(ge.getMessage(), ge);
 		} catch (SQLException se) {
-			if(se instanceof SQLIntegrityConstraintViolationException) {
-				throw new DuplicatedException("No se ha podido insertar el Categorias, integridad de datos violada",se);
+			if (se instanceof SQLIntegrityConstraintViolationException) {
+				throw new DuplicatedException("No se ha podido insertar el Categorias, integridad de datos violada",
+						se);
 			}
 			throw new GenericException(se.getMessage(), se);
 		}
 	}
+
+	//Creacion de getSaveSQL Con API REFLECTION
+	private String getSaveSQL2(T entity) {
+		StringBuffer sql = new StringBuffer().append("(");
+		int contAtributos = 0;
+		Field[] arts = entity.getClass().getDeclaredFields();
+		
+		for (int i = 0; i < arts.length; i++) {
+			arts[i].setAccessible(true);
+			if (arts[i].getName() != "id") {
+				contAtributos++;
+				StringBuffer preName = seekerUppercaseAttributeName(arts[i]);
+				if (contAtributos == arts.length - 1) {
+					sql.append(preName.toString().toUpperCase() + ") ");
+				} else {
+					sql.append(preName.toString().toUpperCase() + ", ");
+				}
+			}
+		}
+		generatedValues(sql, contAtributos);
+		return sql.toString();
+	}
 	
-	private Object getSaveSQL2(T entity) {
-		// TODO Auto-generated method stub
-		return null;
+	//Toma un objeto de la clase field y toma su nombre y recorre por caracter hasta encontrar mayuscula para insertar el _ que necesita SQL
+	//El nombre de los atributos simpre estan en formato CamelCase cuando encuentra una mayuscula le inserta "_"
+	private StringBuffer seekerUppercaseAttributeName(Field field) {
+		StringBuffer preName = new StringBuffer();
+		for (int i = 0; i < field.getName().length(); i++) {
+			if (Character.isUpperCase(field.getName().charAt(i))) {
+				preName.append("_" + field.getName().charAt(i));
+			} else {
+				preName.append(field.getName().charAt(i));
+			}
+		}
+		return preName;
+	}
+	
+	//Genera el final de la consulta SAVE agregando VALUE + "?" = cantidad atributos de la clase
+	private void generatedValues(StringBuffer sql, int cantAtributos) {
+		sql.append("VALUES");
+		for (int j = 0; j < cantAtributos; j++) {
+			if (j == 0) {
+				sql.append(" (?,");
+			} else if (j == cantAtributos - 1) {
+				sql.append("?)");
+			} else {
+				sql.append("?,");
+			}
+		}
 	}
 
-
 	public abstract String getUpdateSQL(T entityUpdate);
-	
+
 	public abstract void updateData(T entityUpdate, PreparedStatement st) throws SQLException;
-	
+
 	@Override
 	public void update(T entityUpdate) throws GenericException {
-		
-		StringBuffer sql = new StringBuffer("UPDATE ").append(this.tabla).append(" SET ") .append(this.getUpdateSQL(entityUpdate))
-				.append(" where id=?");
-		
-		//Forma para buscar el ultimo ?
+
+		StringBuffer sql = new StringBuffer("UPDATE ").append(this.tabla).append(" SET ")
+				.append(this.getUpdateSQL(entityUpdate)).append(" where id=?");
+
+		// Forma para buscar el ultimo ?
 		int idx = getWhereIndex(sql);
-	
+
 		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()) {
 
 			try (PreparedStatement st = con2.prepareStatement(sql.toString())) {
-				
-				this.updateData(entityUpdate,st);
-				
+
+				this.updateData(entityUpdate, st);
+
 				st.setLong(idx, entityUpdate.getId());
 
 				st.execute();
@@ -102,12 +150,12 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 
 	}
 
-	//Determina el indice del where
+	// Determina el indice del where
 	private int getWhereIndex(StringBuffer sql) {
 		int idx = 0;
-		for(char c : sql.toString().toCharArray()) {
-			if(c == '?') {
-				idx ++;
+		for (char c : sql.toString().toCharArray()) {
+			if (c == '?') {
+				idx++;
 			}
 		}
 		return idx;
@@ -160,15 +208,14 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 		return registros;
 	}
-	
+
 	// AUTOCOMIT: ejecuta una sentencia y si sale todo bien, impacta el cambio en la
 	// bd, hasta que no se ejecute el metodo commit no se impacta en la db
 	@Override
 	public void delete(Long id) throws GenericException {
-		String sql = "DELETE FROM "+ this.tabla +" WHERE ID = " + id;
-		try(Connection con2 = AdministradorDeConexiones.obtenerConexion();
-				Statement st = con2.createStatement()){
-				st.executeUpdate(sql);// alt+shift+m
+		String sql = "DELETE FROM " + this.tabla + " WHERE ID = " + id;
+		try (Connection con2 = AdministradorDeConexiones.obtenerConexion(); Statement st = con2.createStatement()) {
+			st.executeUpdate(sql);// alt+shift+m
 		} catch (GenericException ge) {
 			throw new GenericException(sql, ge);
 		} catch (SQLException se) {
@@ -176,11 +223,11 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 
 	}
-	
+
 	@Override
-	public List<T> findPageable(Integer currentPage,Integer size) throws GenericException {
+	public List<T> findPageable(Integer currentPage, Integer size) throws GenericException {
 		List<T> registros = new ArrayList<>();
-		String sql = "SELECT * FROM " + this.tabla +" LIMIT "+ size + " OFFSET " + (currentPage-1);
+		String sql = "SELECT * FROM " + this.tabla + " LIMIT " + size + " OFFSET " + (currentPage - 1);
 		// Connection
 		try (Connection con2 = AdministradorDeConexiones.obtenerConexion();
 				Statement st = con2.createStatement();
@@ -196,7 +243,6 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 		return registros;
 	}
-
 
 	// Cada hijo decide que tabla utiliza
 	public abstract T formResultSetToEntity(ResultSet rs) throws SQLException;
