@@ -14,7 +14,7 @@ public class ReflectionApiMain {
 	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, InstantiationException {
 		Articulo art = new Articulo(1l,"titulo","codigo",new Date(),1500d, 1l,1l,1l);
 		
-		Categorias cat = new Categorias(1L, "desc 112",1L);
+		Categorias cat = new Categorias(1L, "desc 112",1);
 		
 		Orden ord = new Orden(1l,"o2131",150F);
 		

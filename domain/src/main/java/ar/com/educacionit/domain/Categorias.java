@@ -3,16 +3,16 @@ package ar.com.educacionit.domain;
 public class Categorias implements Entity{
 	private Long id;
 	private String descripcion;
-	private Long habilitada;
+	private Integer habilitada;
 	
-	public Categorias(Long id, String descripcion, Long habilitada) {
+	public Categorias(Long id, String descripcion, Integer habilitada) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.habilitada = habilitada;
 	}
 
-	public Categorias(String descripcion, Long habilitada) {
+	public Categorias(String descripcion, Integer habilitada) {
 		super();
 		this.descripcion = descripcion;
 		this.habilitada = habilitada;
@@ -34,11 +34,11 @@ public class Categorias implements Entity{
 		this.descripcion = descripcion;
 	}
 
-	public Long getHabilitada() {
+	public Integer getHabilitada() {
 		return habilitada;
 	}
 
-	public void setHabilitada(Long habilitada) {
+	public void setHabilitada(Integer habilitada) {
 		this.habilitada = habilitada;
 	}
 

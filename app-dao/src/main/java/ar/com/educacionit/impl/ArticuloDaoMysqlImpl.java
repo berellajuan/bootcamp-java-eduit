@@ -29,7 +29,6 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 	// Este Metodo completa la Query especifica el PreparedStatement setea los datos
 	@Override
 	public void saveData(Articulo entity, PreparedStatement st) throws SQLException {
-
 		st.setString(1, entity.getTitulo());
 		st.setString(2, entity.getCodigo());
 		st.setDouble(3, entity.getPrecio());
@@ -37,7 +36,6 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 		st.setLong(5, entity.getMarcasId());
 		st.setDate(6, new java.sql.Date(System.currentTimeMillis()));
 		st.setLong(7, entity.getStock());
-
 	}
 
 

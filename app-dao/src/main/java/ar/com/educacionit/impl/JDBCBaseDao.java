@@ -34,7 +34,6 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		
 		try (Connection con2 = AdministradorDeConexiones.obtenerConexion()){
 			
-			StringBuffer  sql2 = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL2(entity));
 			
 			StringBuffer  sql = new StringBuffer("INSERT INTO ").append(this.tabla).append(this.getSaveSQL());
 			
@@ -64,12 +63,6 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 			throw new GenericException(se.getMessage(), se);
 		}
 	}
-	
-	private Object getSaveSQL2(T entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 	public abstract String getUpdateSQL(T entityUpdate);
 	
