@@ -89,9 +89,6 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 		if (entityUpdate.getTitulo() != null) {
 			sql.append("titulo=?").append(",");
 		}
-		if (entityUpdate.getCodigo() != null) {
-			sql.append("codigo=?").append(",");
-		}
 		if (entityUpdate.getPrecio() != null) {
 			sql.append("precio=?").append(",");
 		}
@@ -110,23 +107,21 @@ public class ArticuloDaoMysqlImpl extends JDBCBaseDao<Articulo> implements Artic
 
 	@Override
 	public void updateData(Articulo entityUpdate, PreparedStatement st) throws SQLException {
+		int idx=1;
 		if (entityUpdate.getTitulo() != null) {
-			st.setString(1, entityUpdate.getTitulo());
-		}
-		if (entityUpdate.getCodigo() != null) {
-			st.setString(2, entityUpdate.getCodigo());
+			st.setString(idx++, entityUpdate.getTitulo());
 		}
 		if (entityUpdate.getPrecio() != null) {
-			st.setDouble(3, entityUpdate.getPrecio());
+			st.setDouble(idx++, entityUpdate.getPrecio());
 		}
 		if (entityUpdate.getStock() != null) {
-			st.setLong(4, entityUpdate.getStock());
+			st.setLong(idx++, entityUpdate.getStock());
 		}
 		if (entityUpdate.getMarcasId() != null) {
-			st.setLong(5, entityUpdate.getMarcasId());
+			st.setLong(idx++, entityUpdate.getMarcasId());
 		}
 		if (entityUpdate.getCategoriasId() != null) {
-			st.setLong(6, entityUpdate.getCategoriasId());
+			st.setLong(idx++, entityUpdate.getCategoriasId());
 		}
 		
 	}
