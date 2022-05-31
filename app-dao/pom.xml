@@ -6,10 +6,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>app-daos</artifactId>
-	<properties>
-		<junit.jupiter.version>5.5.2</junit.jupiter.version>
-		<junit.platform.version>1.5.2</junit.platform.version>
-	</properties>
+
 	<name>Modulo de Dao</name>
 	<dependencies>
 		<dependency>

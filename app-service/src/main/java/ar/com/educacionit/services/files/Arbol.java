@@ -1,34 +1,33 @@
 package ar.com.educacionit.services.files;
 
 public class Arbol {
-	private Nodo root;
-	private Nodo izq;
-	private Nodo der;
+	private boolean root;
+	private Nodo nodo;
 	
-		
-	public Arbol(Nodo root, Nodo izq, Nodo der) {
+	public Arbol(boolean root, Nodo nodo) {
 		this.root = root;
-		this.izq = izq;
-		this.der = der;
+		this.nodo = nodo;
 	}
-	public Nodo getRoot() {
+
+	public boolean getRoot() {
 		return root;
 	}
-	public void setRoot(Nodo root) {
+
+	public void setRoot(boolean root) {
 		this.root = root;
 	}
-	public Nodo getIzq() {
-		return izq;
+
+	public Nodo getNodo() {
+		return nodo;
 	}
-	public void setIzq(Nodo izq) {
-		this.izq = izq;
+
+	public void setNodo(Nodo nodo) {
+		this.nodo = nodo;
 	}
-	public Nodo getDer() {
-		return der;
-	}
-	public void setDer(Nodo der) {
-		this.der = der;
-	}
+	
+	
+
+	
 	
 	
 	

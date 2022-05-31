@@ -3,10 +3,12 @@ package ar.com.educacionit.services.files;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.com.educacionit.domain.Menu;
+
 public class MenuRecursivo {
 	public static void main(String[] args) {
-		List<Menu> menus = getMenuFromDB();
-		mostrarMenu(menus);
+		/*List<Menu> menus = getMenuFromDB();
+		mostrarMenu(menus);*/
 
 	}
 
@@ -22,7 +24,7 @@ public class MenuRecursivo {
 
 		}
 	}
-
+/*
 	private static List<Menu> getMenuFromDB() {
 		List<Menu> subMenu = new ArrayList<>();
 		Menu html = new Menu("HTML", new ArrayList<>(), false);
@@ -45,5 +47,5 @@ public class MenuRecursivo {
 		menus.add(guides);
 
 		return menus;
-	}
+	}*/
 }

@@ -26,9 +26,13 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 	}
 	
 	
-	public abstract String getSaveSQL();
+	public  String getSaveSQL() {
+		return "vacio";
+	};
 	
-	public abstract void saveData(T entity, PreparedStatement pstm) throws SQLException;
+	public  void saveData(T entity, PreparedStatement pstm) throws SQLException{
+		
+	};
 	
 	public void save(T entity) throws GenericException, DuplicatedException {
 		
@@ -64,9 +68,13 @@ public abstract class JDBCBaseDao<T extends Entity> implements GenericDao<T> {
 		}
 	}
 
-	public abstract String getUpdateSQL(T entityUpdate);
+	public  String getUpdateSQL(T entityUpdate) {
+		return "vacio";
+	};
 	
-	public abstract void updateData(T entityUpdate, PreparedStatement st) throws SQLException;
+	public void updateData(T entityUpdate, PreparedStatement st) throws SQLException{
+		
+	};
 	
 	@Override
 	public void update(T entityUpdate) throws GenericException {
