@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import ar.com.educacionit.daos.MenuDao;
 import ar.com.educacionit.domain.Menu;
-
+/*
 public class MenuDaoMySqlImpl  extends JDBCBaseDao<Menu> implements MenuDao{
 
 	public MenuDaoMySqlImpl() {
@@ -23,3 +23,4 @@ public class MenuDaoMySqlImpl  extends JDBCBaseDao<Menu> implements MenuDao{
 	}
 
 }
+*/
