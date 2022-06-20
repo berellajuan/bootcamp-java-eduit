@@ -1,0 +1,46 @@
+/*Hoja externa*/
+mark{
+    background-color: aqua;
+
+    /*Tamaño de texto*/
+    font-size: 16px;
+
+    /*Linea por abajo*/
+    /*text-decoration-line: underline;*/
+
+    /*Linea por el medio*/
+    text-decoration-line: line-through;
+}
+
+body{
+
+    background-color: antiquewhite;
+}
+
+/* Select por clase */
+.nombreCustom {
+    background-color: rgb(154, 181, 212);
+}
+
+
+#selectorCostumId {
+    background-color: rgb(79, 219, 154);
+}
+
+/* Selector Universal */
+*{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;   
+    /*Margin*/
+    /*Padding generales*/
+}
+/* tomar el div y los p le doy estilos */
+.divBloque{
+    border: thin solid;
+    background-color: aqua;
+}
+
+.divBloque p{
+    font-size: 25px;
+    color: blue;
+    text-decoration-line: underline;
+}

@@ -1,7 +1,19 @@
 <!DOCTYPE>
-<html>
+<ht ml>
 	<head>
 		<title>  Titulo de pagina </title>
+		<style>
+			/*Comentario en css 1er forma interno*/
+			/* por nombre */
+			/*mark{
+				/* prodiedad:valor */
+				/*background-color: red;
+
+			}*/
+		</style>
+		<link rel="stylesheet" href="styles.css">
+
+		</link>
 	</head>
 	<body>
 	 	<!--  Etiquetas semanticas dan sentido a lo que hago-->
@@ -17,10 +29,33 @@
 	 		<b>Conjunto de enlaces</b>
 	 	</nav>
 	 	<main>
-	 		<mark>Contenido Principal de la Aplicacion, El dato relevante de la seccion</mark>
+
+			<!-- Style en linea  prioriza Stylo en linea antes que inbterna -->
+			<!-- style="background-color: blue;"-->
+	 		<mark >Contenido Principal de la Aplicacion, El dato relevante de la seccion</mark>
 	 		<section>
 	 			<ins>Define una seccion dentro del area principal / Main</ins> 
 	 		</section>
+
+			<section class="nombreCustom">
+				<h3>Selector por Clase</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus veritatis velit nobis similique aut dolorem, atque explicabo dicta, fuga aliquid animi a minus laudantium exercitationem quidem aspernatur placeat unde?</p>
+			</section>
+
+			<section id="selectorCostumId">
+				<h3>Selector por id</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur deserunt nulla maiores, saepe perspiciatis fugit magni veritatis cupiditate laboriosam hic rerum iste quidem sed nam incidunt, ipsam, quaerat voluptate est.</p>
+			</section>
+
+			<div class="divBloque">
+				<p>Soy un Bloque</p>
+				<h3>Soy un h3</h3>
+			</div>
+
+			<div class="divBloque">
+				<p>Soy un Bloque</p>
+				<h3>Soy un h3</h3>
+			</div>
 	 	</main>
 	 	<aside>
 	 		<small>Publicidad</small> 

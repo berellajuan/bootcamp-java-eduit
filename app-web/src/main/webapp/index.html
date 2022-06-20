@@ -1,45 +1,180 @@
-<!-- Comentario -->
-<html>
-	<head>
-	 	<title>Clas 40- Intro a la Web</title>
-	</head>
-	<body>		
-		<a href="https://www.google.com">Link1</a>
-		<a href="https://www.google.com">Link2</a>
-		<p> Hola soy un parrafo </p>
-		<p> Hola soy un parrafo </p>
-		<img height="400px"
-		 width="400px" src="https://tvazteca.brightspotcdn.com/38/e6/7b33cdd042d5a378d56a7f81fa73/perritos-primeros-auxilios.jpg"
-		 />
-		 <img height="400px"
-		 width="400px" src="https://tvazteca.brightspotcdn.com/38/e6/7b33cdd042d5a378d56a7f81fa73/perritos-primeros-auxilios.jpg"
-		 />
-		 <img height="400px"
-		 width="400px" src="https://tvazteca.brightspotcdn.com/38/e6/7b33cdd042d5a378d56a7f81fa73/perritos-primeros-auxilios.jpg"
-		 />
-		 
-		 <!--  ul/ol,li 3 listas mostrar 3 links -->
-		 <!-- UL lista desordenada -->
-		 <!--  OL lista ordenada, los muestra como una secuencia de numeros 1,2,3,n -->
-		 <!--  LI van dentro de las etiquetas OL UL para colocar los items/otras etiquetas -->
-		 <ul>
-		 	<li>Lista desordenada</li>
-		 	<li>Algo sin ordenar</li>
-		 	<li> <a href="./etiquetas.html">Etiqetas</a>  </li>
-		 </ul>
-		 <ol>
-		 	<li>Lista Ordenada</li>
-		 	<li>Juan</li>
-		 	<li>Pedro</li>
-		 	<li> <a href="https://www.google.com/">Ir a Google</a> </li>
-		 	<li> <a href="https://www.facebook.com/">Ir a Facebook</a> </li>
-		 </ol>
-		 
-		 <ul>
-		 	<li> <a href="./etiquetas-basicas.html">Etiqetas Basicas</a>  </li>
-		 	<li> <a href="./etiquetas-semanticas.html">Etiqetas Semanticas</a>  </li>
-		 </ul>
-		 
-		 
-	</body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Escala de navegador viewport: usa todo el ancho y el alto del browser-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2 HTML</title>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <nav></nav>
+    <main>
+        <h1> Clase 2 HTML - Tablas</h1>
+        <section>
+            <table border="1">
+                <tr>
+                    <!-- Titulos de la tabla-->
+                    <th>
+                        id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Edad
+                    </th>
+                </tr>
+                <!--FILA-->
+                <tr>
+                    <!--Columna-->
+                    <td>
+                        1
+                    </td>
+
+                    <td>
+                        Carlos
+                    </td>
+                    <td>
+                        Lopez
+                    </td>
+                    <td>
+                        30
+                    </td>
+                </tr>
+                <!--Fila 2-->
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        Walter
+                    </td>
+                    <td>
+                        Barra
+                    </td>
+                    <td>
+                        36
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Input</h2>
+            <label for="">Numero</label>
+            <input type="number"> <br>
+            <label for="">Texto</label>
+            <input type="text"> <br>
+            <label for="">Radio</label>
+            <input type="radio" name="1">
+            <input type="radio" name="1">
+            <label for="">Checkbox</label>
+            <input type="checkbox" name="name2">
+            <input type="checkbox" name="name2"><br>
+            <label for="">Email</label>
+            <input type="email" name="name2"><br>
+            <label for="">Fecha</label>
+            <input type="date" name="name2"><br>
+            <label for="">Archivo</label>
+            <input type="file" name="" id=""><br>
+            <label for="">Boton</label>
+            <input type="button" value="clic"><br>
+            <select name="" id="">
+                <option value="">opcion 1</option>
+                <option value="">opcion 2</option>
+            </select>
+        </section>
+        <!--Formularios-->
+        <section>
+            <h2>Formulario</h2>
+            <!-- Los formualrios por defecto mandan los tipos de datos get por defecto si no se define el method-->
+            <form action="login.html" method="get">
+                <label>Username</label>
+                <input type="text" name="usuario" required><br>
+                <label>Password</label>
+                <input type="password" name="password" required><br>
+                <label for="">Email</label>
+                <input type="email" name="algo" required><br>
+                                
+                <select name="genero" required> 
+                    <option></option>
+                    <option>Masculino</option>
+                    <option>Famenino</option>
+
+                </select>
+                <br>
+                <label>numero</label>
+                <input type="number" name="numero" required max="5" min="2">
+                <input type="submit" value="Login">
+
+
+                
+                <input type="radio" name="1" value="1">
+                <input type="radio" name="1" value="2">
+
+                <input type="date">
+                <input type="submit" value="login"><br>
+
+                
+            </form>
+        </section>
+
+        <section>
+            <fieldset>
+                <legend>Titulo</legend>
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>UserName</label>
+                            </td>}
+                            <td>
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Password</label>
+                            </td>}
+                            <td>
+                                <input type="password">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Rango</label>
+                            </td>}
+                            <td>
+                                <select></select>
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+            </fieldset>
+
+        </section>
+
+        <section>
+            <h2>Iframe</h2>
+            <iframe src="http://www.google.com" frameborder="0"></iframe>
+        </section>
+        <section>
+            <h1>Video </h1>
+            <video src=""></video>
+        </section>
+
+
+
+    </main>
+    <article></article>
+    <footer></footer>
+    
+</body>
 </html>
