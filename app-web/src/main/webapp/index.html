@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Escala de navegador viewport: usa todo el ancho y el alto del browser-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clase 2 HTML</title>
+    <title>Clase2 HTML</title>
 </head>
 <body>
+    <!--barra-->
     <header>
-        
+
     </header>
-    <nav></nav>
+    <nav>
+
+    </nav>
     <main>
-        <h1> Clase 2 HTML - Tablas</h1>
+        <h1>
+            Clase 2 HTML - Tablas
+        </h1>
         <section>
-            <table border="1">
+            <h2>Alumnos</h2>
+            <table border="1" >
+                <!--fila1-->
                 <tr>
-                    <!-- Titulos de la tabla-->
+                    <!--titulos de la tabla-->
                     <th>
-                        id
+                        Id
                     </th>
                     <th>
                         Nombre
@@ -30,27 +36,24 @@
                         Edad
                     </th>
                 </tr>
-                <!--FILA-->
                 <tr>
-                    <!--Columna-->
                     <td>
                         1
                     </td>
-
                     <td>
                         Carlos
                     </td>
                     <td>
-                        Lopez
+                        L&oacute;pez
                     </td>
                     <td>
-                        30
+                        36
                     </td>
                 </tr>
-                <!--Fila 2-->
+                <!--fila2-->
                 <tr>
                     <td>
-                        1
+                        2
                     </td>
                     <td>
                         Walter
@@ -66,65 +69,66 @@
         </section>
 
         <section>
-            <h2>Input</h2>
-            <label for="">Numero</label>
-            <input type="number"> <br>
-            <label for="">Texto</label>
+            <h2>Input</h2>      
+            <label>Number</label><input type="number"> <br>
+
             <input type="text"> <br>
-            <label for="">Radio</label>
-            <input type="radio" name="1">
-            <input type="radio" name="1">
-            <label for="">Checkbox</label>
+            <input type="radio" name="name1">
+            <input type="radio" name="name1">
+            <br>
             <input type="checkbox" name="name2">
-            <input type="checkbox" name="name2"><br>
-            <label for="">Email</label>
-            <input type="email" name="name2"><br>
-            <label for="">Fecha</label>
-            <input type="date" name="name2"><br>
-            <label for="">Archivo</label>
-            <input type="file" name="" id=""><br>
-            <label for="">Boton</label>
-            <input type="button" value="clic"><br>
-            <select name="" id="">
-                <option value="">opcion 1</option>
-                <option value="">opcion 2</option>
+            <input type="checkbox" name="name2">
+            <input type="checkbox" name="name2">
+            <br>
+            <input type="email"><!--validaciones -->
+            <input type="date"><br><br>
+            <input type="file"><br>
+            <input type="button" value="Click Me">
+            <br>
+            <select>
+                <option>opcion1</option>
+                <option>opcion2</option>
             </select>
         </section>
-        <!--Formularios-->
-        <section>
-            <h2>Formulario</h2>
-            <!-- Los formualrios por defecto mandan los tipos de datos get por defecto si no se define el method-->
-            <form action="login.html" method="get">
-                <label>Username</label>
-                <input type="text" name="usuario" required><br>
-                <label>Password</label>
-                <input type="password" name="password" required><br>
-                <label for="">Email</label>
-                <input type="email" name="algo" required><br>
-                                
-                <select name="genero" required> 
-                    <option></option>
-                    <option>Masculino</option>
-                    <option>Famenino</option>
 
+        <!--fomularios-->
+        <section>
+            <h2>Formulario</h2> 
+            <!--los formulariios por defecto mandan los datos por GET-->
+            <form action="procesar-login.html"
+                method="get">
+                <label>Username</label>
+                <input type="text" name="usuario" >
+                <br>
+                <label>password</label>
+                <input type="password" name="password" >
+                <br>
+                <label>Email</label>
+                <input type="email" name="email" >
+                <br>
+                <select name="rangoedad" >
+                    <option></option>
+                    <option>18-25</option>
+                    <option>26-36</option>
+                    <option>+36</option>
                 </select>
                 <br>
-                <label>numero</label>
-                <input type="number" name="numero" required max="5" min="2">
+                <input type="datetime-local" >
+                <br>
+                <label>N&uacute;mero</label>
+                <input type="number" name="numero"  max="5" min="2">
+                <br>
+                <label>Radios</label>
+                <input type="radio" name="name1" value="1">
+                <input type="radio" name="name1" value="2">
+                <br>
+                <label>opciones</label>
+                <input type="checkbox" name="name2" value="op1">
+                <input type="checkbox" name="name2" value="op2" required>
+                <input type="checkbox" name="name2" value="op2">
                 <input type="submit" value="Login">
-
-
-                
-                <input type="radio" name="1" value="1">
-                <input type="radio" name="1" value="2">
-
-                <input type="date">
-                <input type="submit" value="login"><br>
-
-                
             </form>
         </section>
-
         <section>
             <fieldset>
                 <legend>Titulo</legend>
@@ -132,49 +136,67 @@
                     <table>
                         <tr>
                             <td>
-                                <label>UserName</label>
-                            </td>}
+                                <label>Username</label>
+                            </td>
                             <td>
-                                <input type="text">
+                                <input type="text" placeholder="algo">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Password</label>
-                            </td>}
+                            </td>
                             <td>
-                                <input type="password">
+                                <input type="password" readonly>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Rango</label>
-                            </td>}
+                            </td>
                             <td>
                                 <select></select>
                             </td>
                         </tr>
-
                     </table>
                 </form>
             </fieldset>
-
         </section>
 
         <section>
-            <h2>Iframe</h2>
-            <iframe src="http://www.google.com" frameborder="0"></iframe>
+            <h2>Iframe</h2>            
+            <iframe 
+                width="560" height="315" 
+                src="https://www.youtube.com/embed/rSXSqlzwyp4" 
+                title="YouTube video player"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
         </section>
+        
         <section>
-            <h1>Video </h1>
-            <video src=""></video>
+        	<h1>Video</h1>
+        	<video src="http://video.com.ar/video.ogg"></video>
+        	
+        	<video width="320" height="240" autoplay>
+			  <source src="movie.mp4" type="video/mp4">
+			  <source src="movie.ogg" type="video/ogg">
+			  Your browser does not support the video tag.
+			</video>
+			
+			<audio controls>
+			  <source src="horse.ogg" type="audio/ogg">
+			  <source src="horse.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+			</audio>
         </section>
-
-
-
     </main>
-    <article></article>
-    <footer></footer>
-    
+
+    <article>
+
+    </article>
+    <footer>
+
+    </footer>
 </body>
 </html>
