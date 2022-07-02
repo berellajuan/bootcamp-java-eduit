@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- Importa las clases -->
+<%@page import="ar.com.educacionit.web.enums.AttributeEnum"%>
 <%@page import="ar.com.educacionit.domain.Articulo"%>
 <%@page import="java.util.Collection"%>
 <html lang="es">
@@ -26,7 +27,7 @@
 						<h2>Alta Exitosa</h2>
 						<h3>
 							Lista de Articulos
-							<%Collection<Articulo> list = (Collection<Articulo>) request.getAttribute("articulos");%>
+							<%Collection<Articulo> list = (Collection<Articulo>) request.getAttribute(AttributeEnum.ARTICULOS.getValue());%>
 						</h3>
 						<table class="table">
 							<thead>

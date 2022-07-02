@@ -14,9 +14,11 @@ import ar.com.educacionit.services.SociosService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ArticuloServiceImpl;
 import ar.com.educacionit.services.impl.SociosServiceImpl;
+import ar.com.educacionit.web.enums.AttributeEnum;
+import ar.com.educacionit.web.enums.ViewsEnum;
 
 @WebServlet("/controller/form")
-public class AltaFormularioServlet extends HttpServlet {
+public class AltaFormularioServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 5626936385952858404L;
 
@@ -38,15 +40,15 @@ public class AltaFormularioServlet extends HttpServlet {
 		ArticuloServiceImpl ar = new ArticuloServiceImpl();
 		try {
 			Collection<Articulo> list = ar.findAll();
-			request.setAttribute("articulos", list);
-			
+			//request.setAttribute(AttributeEnum.ARTICULOS.getValue(), list);
+			setAttribute(AttributeEnum.ARTICULOS, request, list);
 			// redireccion a otra pagina
 			// con esta linea puedo ir a otra pagina, y forward le pasa el request y
 			// response
 			
-			getServletContext().getRequestDispatcher("/registroOk.jsp").forward(request, response);
+			redirect(ViewsEnum.REGISTRO_OK, request, response);
 		} catch (ServiceException e) {
-			getServletContext().getRequestDispatcher("/registroFail.jsp").forward(request, response);
+			redirect(ViewsEnum.REGISTRO_FAIL, request, response);
 		}
 
 
