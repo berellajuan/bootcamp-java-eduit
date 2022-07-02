@@ -25,6 +25,7 @@
 					<section>
 						<!-- la funcion da /app-web de manera dinamica es el nombre del contexto-->
 						<h2>Alta Exitosa</h2>
+
 						<h3>
 							Lista de Articulos
 							<%Collection<Articulo> list = (Collection<Articulo>) request.getAttribute(AttributeEnum.ARTICULOS.getValue());%>
@@ -48,8 +49,8 @@
 										<td><%=art.getCodigo() %></td>
 										<td><%=art.getPrecio() %></td>
 										<td>
-											<a class="btn btn-danger" role="button" href="<%=request.getContextPath()%>/controller/eliminar?id=<%=
-											art.getId()	%>">Eliminar</a>
+											<a class="btn btn-danger" role="button" href="<%=request.getContextPath()%>/controller/eliminar?id=
+											<%=	art.getId()	%>">Eliminar</a>
 											<a class="btn btn-primary" role="button">Editar</a>
 										</td>
 									</tr>

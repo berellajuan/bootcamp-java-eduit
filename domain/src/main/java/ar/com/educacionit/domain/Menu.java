@@ -7,20 +7,32 @@ public class Menu implements Entity{
 	private Long id;
 	private String texto;
 	private List<Menu> subMenu = new ArrayList<>();
-	private boolean isRoot;
+	private Long root;
 	private Long idMenuPadre;
+	private String link;
 	
-	public Menu(Long id, String texto, boolean isRoot, Long idMenuPadre) {
+	public Menu(Long id, String texto, Long root, Long idMenuPadre, String link) {
 		this.id = id;
 		this.texto = texto;
-		this.isRoot = isRoot;
+		this.root = root;
 		this.idMenuPadre = idMenuPadre;
+		this.link =link;
 	}
 
-	public Menu(String texto, List<Menu> subMenu, boolean isRoot) {
+	public Menu(String texto, List<Menu> subMenu, Long root) {
 		this.texto = texto;
 		this.subMenu = subMenu;
-		this.isRoot = isRoot;
+		this.root = root;
+	}
+	
+	
+	
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public String getTexto() {
@@ -39,12 +51,14 @@ public class Menu implements Entity{
 		this.subMenu = subMenu;
 	}
 
-	public boolean isRoot() {
-		return isRoot;
+	
+
+	public Long getRoot() {
+		return root;
 	}
 
-	public void setRoot(boolean isRoot) {
-		this.isRoot = isRoot;
+	public void setRoot(Long root) {
+		this.root = root;
 	}
 
 	public Long getId() {
@@ -65,9 +79,11 @@ public class Menu implements Entity{
 
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", texto=" + texto + ", subMenu=" + subMenu + ", isRoot=" + isRoot + ", idMenuPadre="
-				+ idMenuPadre + "]";
+		return "Menu [id=" + id + ", texto=" + texto + ", subMenu=" + subMenu + ", root=" + root + ", idMenuPadre="
+				+ idMenuPadre + ", link=" + link + "]";
 	}
+
+	
 	
 	
 	

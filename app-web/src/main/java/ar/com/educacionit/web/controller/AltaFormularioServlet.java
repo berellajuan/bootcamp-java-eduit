@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ar.com.educacionit.domain.Articulo;
+import ar.com.educacionit.domain.Menu;
 import ar.com.educacionit.services.SociosService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ArticuloServiceImpl;
+import ar.com.educacionit.services.impl.MenuServiceImpl;
 import ar.com.educacionit.services.impl.SociosServiceImpl;
 import ar.com.educacionit.web.enums.AttributeEnum;
 import ar.com.educacionit.web.enums.ViewsEnum;
@@ -38,10 +40,16 @@ public class AltaFormularioServlet extends BaseServlet {
 		//request.setAttribute("idGen", id);
 		
 		ArticuloServiceImpl ar = new ArticuloServiceImpl();
+		
+		
 		try {
 			Collection<Articulo> list = ar.findAll();
-			//request.setAttribute(AttributeEnum.ARTICULOS.getValue(), list);
-			setAttribute(AttributeEnum.ARTICULOS, request, list);
+			
+			
+			request.setAttribute(AttributeEnum.ARTICULOS.getValue(), list);
+
+			
+			//setAttribute(AttributeEnum.ARTICULOS, request, list);
 			// redireccion a otra pagina
 			// con esta linea puedo ir a otra pagina, y forward le pasa el request y
 			// response
